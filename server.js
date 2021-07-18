@@ -7,7 +7,7 @@ app.use(express.json());
 // List of users.
 const users = [
   {
-    name: "DURGESH",
+    name: "DENVER",
     password: "password",
   },
 ];
