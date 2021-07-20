@@ -7,8 +7,8 @@ app.use(express.json());
 // List of users.
 const users = [
   {
-    name: "DENVER",
-    password: "password",
+    name: "Denver",
+    password: "pass123",
   },
 ];
 
@@ -19,11 +19,9 @@ app.get("/users", (req, res) => {
 
 app.post("/users", async (req, res) => {
   try {
-    const salt = await bcrypt.genSalt(10); //This way we create salt using genslat. Otheriwse we can pass the round in the 2nd args also.
-    //  Default is 10 the more the round the more it will be secure.
-    const hashedPassword = await bcrypt.hash(req.body.password, salt); // bcyrpt save the salt in hashedPassword so we dont need to pass salt alone.
+    const salt = await bcrypt.genSalt(10); //This way we create salt using genSlat.Default is 10, more the value more it will be secure.
+    const hashedPassword = await bcrypt.hash(req.body.password, salt); // bcrypt save the salt in hashedPassword so we don't need to pass salt alone.
     const user = { name: req.body.name, password: hashedPassword };
-    console.log("🧂  " + salt, "㊙️ " + hashedPassword);
     users.push(user);
     res.status(201).send("created");
   } catch (error) {
